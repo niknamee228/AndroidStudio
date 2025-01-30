@@ -1,0 +1,117 @@
+@file:Suppress("UNREACHABLE_CODE")
+
+package com.example.myapplication
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            Task10()
+
+
+
+
+        }
+    }
+}
+@Composable
+fun Task10() {
+    MyApplicationTheme {
+        val context = LocalContext.current //Контекст, используется для Toast (всплывающе окна)
+        var a by remember { mutableStateOf("") } //Умная переменная
+
+
+        var result1 by remember { mutableStateOf("") }
+
+
+
+
+        Scaffold(modifier = Modifier.fillMaxSize()) {  innerPadding ->
+            Column(modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally)
+            {
+                Text("Задание номер 10")
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "введите что нибудь $result1"
+                )
+
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                TextField(
+                    value = a,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), //Настройка клавиатуры на ввод только чисел
+                    onValueChange = {
+                            newText ->
+                        a = newText
+                    }
+                )
+
+
+
+
+
+
+                Spacer(modifier = Modifier.height(30.dp))
+                Button(onClick = {
+                    result1 = makeFormula1(a)
+
+                }) { Text("Рассчитать") }
+            }
+
+        }
+    }
+}
+
+fun makeFormula1(a: String): String{
+    return when(a){
+        "0"->"это цифра"
+        "1"->"это цифра"
+        "2"->"это цифра"
+        "3"->"это цифра"
+        "4"->"это цифра"
+        "5"->"это цифра"
+        "6"->"это цифра"
+        "7"->"это цифра"
+        "8"->"это цифра"
+        "9"->"это цифра"
+        "&"->"это спец символ"
+        "#"->"это спец символ"
+        else
+            ->"непредусмотреный вариант"
+}
+}
